@@ -90,12 +90,12 @@ public class SingletonHandler
     {
         try
         {
-            socket = new ServerSocket(port);
+            socket = new ServerSocket(port, 0, InetAddress.getLocalHost());
             listenForDuplicate();                //Looks like we didn't fail, so this instance is not a duplicate
         }
         catch (IOException e)                    //Oh no! We are a duplicate!
         {
-            if (attempt < MAX_ATTEMPTS)          //Try to bind to this port at least 3 times. We do this incase the original was shutting down and 
+            if (attempt < MAX_ATTEMPTS)          //Try to bind to this port at least 3 times. We do this in case the original was shutting down and 
             {                                    //had yet to release the port that it was bound to.
                 try
                 {
